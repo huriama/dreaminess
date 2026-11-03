@@ -1,0 +1,10 @@
+DREAMINESS
+
+Abra index.html no navegador para visualizar.
+Para publicar, envie os arquivos a uma hospedagem estática, como Netlify Drop.
+
+index.html — página inicial
+palimpsesto.html — primeiro texto
+style.css — aparência
+
+Sem anúncios, curtidas, comentários ou rastreadores instalados.

@@ -4,15 +4,14 @@
     "title": "Remição",
     "date": "05/11/2026",
     "url": "remicao.html",
-    "image": "remicao-capa.png",
-    "imageAlt": "Homem lendo, cercado por fragmentos de memória",
-    "description": "Sobre livros, penas e perdão. Há prisões das quais saímos sem jamais nos libertarmos."
+    "image": "imagens/remicao-capa.png",
+    "imageAlt": "Homem lendo um livro, cercado por fragmentos de memória",
+    "description": "Há penas que o tempo abrevia e outras que sobrevivem ao perdão."
   },
   {
     "title": "O Perigo do Meio",
-    "date": "03/11/2026",
     "url": "o-perigo-do-meio.html",
-    "description": "Sobre o hábito de começar, a dificuldade de concluir e os caminhos que abandonamos."
+    "description": "Sobre o hábito de começar, a dificuldade de concluir e o perigo de permanecer no meio."
   },
   {
     "title": "Palimpsesto",

@@ -1,173 +1,93 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Remição — Sobre livros, penas e perdão. Um ensaio do Dreaminess.">
-  <title>Remição — Dreaminess</title>
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: #f7f3eb;
-      color: #342f2a;
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.85;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .site {
-      max-width: 730px;
-      margin: auto;
-      padding: 0 28px;
-    }
-
-    header {
-      padding: 40px 0 75px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      font-size: 14px;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-
-    nav, .eyebrow, footer {
-      font: 12px system-ui, sans-serif;
-      letter-spacing: .1em;
-      color: #81776d;
-    }
-
-    h1 {
-      font-size: clamp(42px, 9vw, 68px);
-      font-weight: normal;
-      line-height: 1.12;
-      letter-spacing: -.045em;
-      margin: 15px 0 15px;
-    }
-
-    .subtitle {
-      font-style: italic;
-      color: #81776d;
-      font-size: 19px;
-      margin-bottom: 45px;
-    }
-
-    .cover {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 0 55px;
-    }
-
-    article p {
-      font-size: 18px;
-      line-height: 1.95;
-      margin: 0 0 28px;
-    }
-
-    article em { font-style: italic; }
-
-    .highlight {
-      margin: 45px 0;
-      padding-left: 22px;
-      border-left: 2px solid #a34235;
-      font-size: 21px;
-      font-style: italic;
-    }
-
-    .ending {
-      margin-top: 45px;
-      font-weight: bold;
-    }
-
-    footer {
-      margin-top: 90px;
-      padding: 35px 0 50px;
-      border-top: 1px solid #ddd5ca;
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 30px 0 60px; }
-      article p { font-size: 17px; }
-      .subtitle { font-size: 17px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f3eb">
+<meta name="description" content="Remição — Sobre livros, penas e perdão. Um ensaio do Dreaminess.">
+<title>Remição — Dreaminess</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js" defer></script>
 </head>
 
 <body>
 <div class="site">
-
 <header>
   <a class="brand" href="index.html">Dreaminess</a>
-  <nav><a href="index.html">Início</a></nav>
+  <div class="header-actions">
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="index.html#textos">Textos</a>
+    </nav>
+    <button class="theme-toggle" type="button"
+      aria-label="Alternar modo noturno"
+      title="Alternar tema">☾</button>
+  </div>
 </header>
 
 <main>
-  <article>
-    <div class="eyebrow">ENSAIO</div>
-    <h1>Remição</h1>
-    <div class="subtitle">Sobre livros, penas e perdão</div>
+<article class="post">
 
-    <img class="cover"
-         src="remicao-capa.png"
-         alt="Homem lendo um livro, cercado por imagens fragmentadas de sua própria mente">
+<div class="eyebrow">Reflexões</div>
+<h1>Remição</h1>
 
-    <p>No Brasil, a leitura de livros pode reduzir uma pena. Não se trata de uma metáfora. Pessoas privadas de liberdade podem abater quatro dias de suas condenações por obra lida e validada, até o limite de quarenta e oito dias por ano.</p>
+<p class="intro">Sobre livros, penas e perdão</p>
 
-    <p>O benefício recebe o nome de <em>remição de pena</em>, com cedilha. A palavra deriva do latim <em>redimere</em>, que significa resgatar, comprar de volta. É da mesma origem de <em>redenção</em>.</p>
+<figure class="cover">
+<img src="remicao-capa.png"
+alt="Homem lendo um livro, cercado por fragmentos de memória">
+</figure>
 
-    <p>Eu já conhecia, entretanto, outra palavra bastante semelhante: <em>remissão</em>, com dois esses. Sabia de sua existência e de seu significado, mas nunca havia me detido na curiosa proximidade entre as duas.</p>
+<p>No Brasil, a leitura de livros pode reduzir uma pena. Não se trata de uma metáfora. Pessoas privadas de liberdade podem abater quatro dias de suas condenações por obra lida e validada, até o limite de quarenta e oito dias por ano.</p>
 
-    <p>Remissão significa perdão, absolvição ou dispensa de uma obrigação. Sua origem está no latim <em>remittere</em>, que carrega a ideia de liberar, deixar ir, perdoar.</p>
+<p>O benefício recebe o nome de <em>remição de pena</em>, com cedilha. A palavra deriva do latim <em>redimere</em>, que significa resgatar, comprar de volta. É da mesma origem de <em>redenção</em>.</p>
 
-    <p>A distinção é importante. Enquanto a remição permite resgatar algo mediante uma contrapartida, a remissão pressupõe a dispensa daquilo que se devia.</p>
+<p>Eu já conhecia, entretanto, outra palavra bastante semelhante: <em>remissão</em>, com dois esses. Sabia de sua existência e de seu significado, mas nunca havia me detido na curiosa proximidade entre as duas.</p>
 
-    <p>Uma reduz a pena. A outra pode perdoá-la.</p>
+<p>Remissão significa perdão, absolvição ou dispensa de uma obrigação. Sua origem está no latim <em>remittere</em>, que carrega a ideia de liberar, deixar ir, perdoar.</p>
 
-    <p>Embora não sejam sinônimas, comecei a pensar que, para algumas pessoas, talvez pudessem ser.</p>
+<p>A distinção é importante. Enquanto a remição permite resgatar algo mediante uma contrapartida, a remissão pressupõe a dispensa daquilo que se devia.</p>
 
-    <p>Por muito tempo, acreditei que, se me distraísse o suficiente, encontraria, enfim, o perdão. Que bastaria ocupar os dias, preencher os silêncios e deixar o tempo passar. Como se o esquecimento fosse uma consequência inevitável da distância.</p>
+<p>Uma reduz a pena. A outra pode perdoá-la.</p>
 
-    <div class="highlight">Mas isso é remição, com cedilha. Não remissão.</div>
+<p>Embora não sejam sinônimas, comecei a pensar que, para algumas pessoas, talvez pudessem ser.</p>
 
-    <p>Trata-se apenas de abreviar a pena, de sair do cárcere. E é perfeitamente possível deixar uma prisão sem jamais se libertar dela.</p>
+<p>Por muito tempo, acreditei que, se me distraísse o suficiente, encontraria, enfim, o perdão. Que bastaria ocupar os dias, preencher os silêncios e deixar o tempo passar. Como se o esquecimento fosse uma consequência inevitável da distância.</p>
 
-    <p>Há muitos anos, durante uma viagem de avião, eu lia um livro chamado <em>O Poder da Inteligência</em>. Lembro-me de uma explicação sobre experiências negativas e a maneira como permaneceriam registradas em nossa memória. O autor as chamava de <em>janelas killer</em>: registros dolorosos que, segundo aquela abordagem, não poderiam simplesmente ser fechados.</p>
+<p class="quote">Mas isso é remição, com cedilha. Não remissão.</p>
 
-    <p>A alternativa apresentada seria abrir outras janelas, as chamadas <em>janelas plus</em>. Experiências positivas, lembranças agradáveis, novos acontecimentos. A ideia, como a compreendi na época, era acumular tantas dessas janelas que as anteriores se tornassem cada vez menos acessíveis.</p>
+<p>Trata-se apenas de abreviar a pena, de sair do cárcere. E é perfeitamente possível deixar uma prisão sem jamais se libertar dela.</p>
 
-    <p>Em outras palavras, distrair-se.</p>
+<p>Há muitos anos, durante uma viagem de avião, eu lia um livro chamado <em>O Poder da Inteligência</em>. Lembro-me de uma explicação sobre experiências negativas e a maneira como permaneceriam registradas em nossa memória. O autor as chamava de <em>janelas killer</em>: registros dolorosos que, segundo aquela abordagem, não poderiam simplesmente ser fechados.</p>
 
-    <p>E foi exatamente o que fiz durante muitos anos.</p>
+<p>A alternativa apresentada seria abrir outras janelas, as chamadas <em>janelas plus</em>. Experiências positivas, lembranças agradáveis, novos acontecimentos. A ideia, como a compreendi na época, era acumular tantas dessas janelas que as anteriores se tornassem cada vez menos acessíveis.</p>
 
-    <p>Ocupei meus dias, colecionei experiências, procurei novos interesses e preenchi os espaços que antes pertenciam ao silêncio. Acreditei que, se continuasse em movimento, chegaria um momento em que já não haveria nada a revisitar.</p>
+<p>Em outras palavras, distrair-se.</p>
 
-    <p>Mas há feridas que permanecem abertas mesmo depois de encerrados os acontecimentos que as provocaram. Podemos passar uma vida inteira evitando tocá-las, convencidos de que já cicatrizaram. Até que o silêncio nos encontre e percebamos que a dor continua ali, exatamente onde a deixamos.</p>
+<p>E foi exatamente o que fiz durante muitos anos.</p>
 
-    <p>Talvez porque seja mais fácil perdoar os outros do que a nós mesmos.</p>
+<p>Ocupei meus dias, colecionei experiências, procurei novos interesses e preenchi os espaços que antes pertenciam ao silêncio. Acreditei que, se continuasse em movimento, chegaria um momento em que já não haveria nada a revisitar.</p>
 
-    <p>Perdoamos as circunstâncias, as pessoas, os erros alheios. Encontramos justificativas para quase tudo. Mas, quando se trata de nossas próprias transgressões, insistimos em cumprir uma sentença que ninguém mais exige.</p>
+<p>Mas há feridas que permanecem abertas mesmo depois de encerrados os acontecimentos que as provocaram. Podemos passar uma vida inteira evitando tocá-las, convencidos de que já cicatrizaram. Até que o silêncio nos encontre e percebamos que a dor continua ali, exatamente onde a deixamos.</p>
 
-    <p>E, se não compreendermos essa diferença, podemos continuar lendo à vontade. Podemos virar todas as páginas, acumular todos os dias e até deixar o cárcere.</p>
+<p>Talvez porque seja mais fácil perdoar os outros do que a nós mesmos.</p>
 
-    <p class="ending">Sem remissão, porém, continuaremos presos àquilo que nunca conseguimos perdoar em nós mesmos. Trabalharemos bastante, mas não chegaremos a lugar nenhum.</p>
+<p>Perdoamos as circunstâncias, as pessoas, os erros alheios. Encontramos justificativas para quase tudo. Mas, quando se trata de nossas próprias transgressões, insistimos em cumprir uma sentença que ninguém mais exige.</p>
 
-  </article>
+<p>E, se não compreendermos essa diferença, podemos continuar lendo à vontade. Podemos virar todas as páginas, acumular todos os dias e até deixar o cárcere.</p>
+
+<p class="closing">Sem remissão, porém, continuaremos presos àquilo que nunca conseguimos perdoar em nós mesmos. Trabalharemos bastante, mas não chegaremos a lugar nenhum.</p>
+
+</article>
 </main>
+</div>
 
 <footer>
-  <a href="index.html">← Voltar ao Dreaminess</a>
-  <p>Dreaminess — O que você faz antes de dormir?</p>
-</footer>
-
+<div class="site">
+<span>Dreaminess — um arquivo de devaneios.</span>
+<span>Sem pressa, sem ruído.</span>
 </div>
+</footer>
 </body>
 </html>

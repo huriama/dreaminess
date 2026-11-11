@@ -1,51 +1,74 @@
-import json, re
-from pathlib import Path
+#!/usr/bin/env python3
+"""Atualiza posts.json com novos artigos HTML na raiz do Dreaminess.
+
+Preserva integralmente as entradas existentes, inclusive sua ordem e metadados.
+Novos artigos são inseridos no topo, sem alterar os textos HTML.
+"""
+import json
+import re
 from datetime import datetime
 from html import unescape
+from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent
 INDEX = ROOT / 'posts.json'
-EXCLUDED = {'index.html', '404.html'}
+EXCLUDED = {'index.html'}
 
-def clean(s):
-    return unescape(re.sub(r'<[^>]+>', '', s)).strip()
 
-def metadata(html, name):
-    title = re.search(r'<h1\b[^>]*>(.*?)</h1>', html, re.I | re.S)
-    if not title:
-        title = re.search(r'<title\b[^>]*>(.*?)</title>', html, re.I | re.S)
-    title = clean(title.group(1)) if title else name.replace('-', ' ').removesuffix('.html').title()
-    title = re.sub(r'\s*[—|]\s*Dreaminess\s*$', '', title, flags=re.I)
-    desc = re.search(r'<meta\s+[^>]*name=["\']description["\'][^>]*content=["\']([^"\']+)', html, re.I)
-    if not desc:
-        desc = re.search(r'<meta\s+[^>]*content=["\']([^"\']+)["\'][^>]*name=["\']description', html, re.I)
-    image = re.search(r'<(?:img|meta)\b[^>]*(?:src|content)=["\'](imagens/[^"\']+)["\']', html, re.I)
-    return title, unescape(desc.group(1)) if desc else '', image.group(1) if image else None
+def extract(pattern, html):
+    match = re.search(pattern, html, flags=re.IGNORECASE | re.DOTALL)
+    return unescape(re.sub(r'\s+', ' ', match.group(1)).strip()) if match else ''
+
+
+def meta(html, name):
+    for tag in re.findall(r'<meta\b[^>]*>', html, flags=re.IGNORECASE | re.DOTALL):
+        key = extract(r'\b(?:name|property)\s*=\s*["\']([^"\']+)["\']', tag)
+        if key.lower() == name.lower():
+            return extract(r'\bcontent\s*=\s*["\']([^"\']*)["\']', tag)
+    return ''
+
 
 def main():
     posts = json.loads(INDEX.read_text(encoding='utf-8')) if INDEX.exists() else []
-    existing = {p.get('url') for p in posts}
+    if not isinstance(posts, list):
+        raise ValueError('posts.json precisa conter uma lista JSON')
+    existing = {p.get('url') for p in posts if isinstance(p, dict)}
     new = []
-    for path in ROOT.glob('*.html'):
-        if path.name in EXCLUDED or path.name in existing:
+    for file in ROOT.glob('*.html'):
+        if file.name.lower() in EXCLUDED or file.name in existing:
             continue
-        html = path.read_text(encoding='utf-8')
-        # Only include actual articles, not utility pages.
-        if not re.search(r'<article\b', html, re.I):
+        html = file.read_text(encoding='utf-8-sig')
+        # Somente artigos explicitamente marcados, ou páginas com estrutura de artigo.
+        if not (re.search(r'<article\b', html, flags=re.IGNORECASE) or meta(html, 'post-title')):
             continue
-        title, description, image = metadata(html, path.name)
-        post = {'title': title, 'date': datetime.now().strftime('%d/%m/%Y'), 'url': path.name}
-        if image:
-            post['image'] = image
+        title = meta(html, 'post-title') or extract(r'<h1\b[^>]*>(.*?)</h1>', html) or extract(r'<title\b[^>]*>(.*?)</title>', html)
+        title = re.sub(r'<[^>]+>', '', title).strip()
+        if not title:
+            continue
+        entry = {
+            'title': title,
+            'date': meta(html, 'post-date') or datetime.now(ZoneInfo('America/Sao_Paulo')).strftime('%d/%m/%Y'),
+            'url': file.name,
+        }
+        description = meta(html, 'description') or meta(html, 'post-description')
+        image = meta(html, 'post-image')
         if description:
-            post['description'] = description
-        new.append((path.stat().st_mtime, post))
+            entry['description'] = description
+        if image:
+            entry['image'] = image
+            alt = meta(html, 'post-image-alt')
+            if alt:
+                entry['imageAlt'] = alt
+        new.append((file.stat().st_mtime, entry))
     if not new:
-        print('Nenhum artigo novo encontrado.')
+        print('Nenhum artigo novo encontrado; posts.json mantido.')
         return
-    new.sort(reverse=True)
-    INDEX.write_text(json.dumps([p for _, p in new] + posts, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f'{len(new)} artigo(s) adicionado(s) ao índice.')
+    new.sort(key=lambda item: item[0], reverse=True)
+    updated = [item[1] for item in new] + posts
+    INDEX.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(f'{len(new)} novo(s) artigo(s) adicionado(s) a posts.json.')
+
 
 if __name__ == '__main__':
     main()

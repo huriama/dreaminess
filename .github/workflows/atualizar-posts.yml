@@ -1,0 +1,36 @@
+
+name: Atualizar publicacoes Dreaminess
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'atualizar_posts.py'
+      - '.github/workflows/atualizar-posts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Atualizar indice
+        run: python atualizar_posts.py
+
+      - name: Salvar alteracoes
+        run: |
+          if ! git diff --quiet -- posts.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add posts.json
+            git commit -m 'Atualizar lista de textos'
+            git push
+          fi
